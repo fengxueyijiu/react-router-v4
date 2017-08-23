@@ -107,12 +107,11 @@ import { BrowserRouter as Router,Link,Route,Redirect,withRouter} from 'react-rou
 //第三部分
 
 
-const Video1 = () =>(
-  <div>Git</div>
+const Video = ({match}) =>(
+
+  <div>{match.params.id}</div>
 )
-const Video2 = () => (
-  <div>React</div>
-)
+
 const App = () =>(
   <Router>
     <div>
@@ -121,8 +120,7 @@ const App = () =>(
         <li><Link to='/v/1-git'>1-git</Link></li>
         <li><Link to='/v/2-react'>2-react</Link></li>
       </ul>
-      <Route path='/v/1-git' compoment={Video1} />
-      <Route path='/v/2-react' compoment={Video2} />
+      <Route path="/v/:id"  component={Video} />
     </div>
   </Router>
 )
