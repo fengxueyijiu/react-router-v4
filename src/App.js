@@ -38,10 +38,16 @@ class Login extends React.Component {
     })
   }
   render(){
+    if(this.props.location.state){
+      var from=this.props.location.state.from
+    }else{
+      var from='/'
+    }
+    console.log(this.props.location)
     const {redirectToReferrer} = this.state
     if(redirectToReferrer){
       return(
-        <Redirect to={'/'}/>
+        <Redirect to={from}/>
       )
     }
     return(
@@ -61,10 +67,13 @@ const AuthButton = withRouter(() => (
 )
 
 const PrivateRoute =({component:Component,...rest}) => (
-  <Route {...rest} render={()=>(
+  <Route {...rest} render={(props)=>(
       fakeAuth.isAuthenticated ?
       (<Component />) : (
-        <Redirect to='/login'/>
+        <Redirect to={{
+            pathname:'/login',
+            state:{from:props.location}
+          }}/>
       )
     )}/>
 )
@@ -79,8 +88,8 @@ class App extends React.Component{
           <AuthButton/>
           <ul>
             <li><Link to='/public'>公开页面</Link></li>
-            <li><Link to='video'>视频</Link></li>
-            <li><Link to='login'>登录</Link></li>
+            <li><Link to='/video'>视频</Link></li>
+            <li><Link to='/login'>登录</Link></li>
           </ul>
           <Route path='/public' component={Public}/>
           <Route path='/login' component={Login}/>
