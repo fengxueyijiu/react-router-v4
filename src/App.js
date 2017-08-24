@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { BrowserRouter as Router,Link,Route,Redirect,withRouter} from 'react-router-dom';
+import { BrowserRouter as Router,Link,Route,Redirect,withRouter, Switch} from 'react-router-dom';
 //第一部分
 // import Login from './login'
 // import Home from './home'
@@ -162,16 +162,38 @@ import { BrowserRouter as Router,Link,Route,Redirect,withRouter} from 'react-rou
 
 //第五部分  老版本切换到v4
 
-import Header from './Header'
-import Main from './Main'
-import Footer from './Footer'
-const App =()=>(
+// import Header from './Header'
+// import Main from './Main'
+// import Footer from './Footer'
+// const App =()=>(
+//   <Router>
+//     <div>
+//       <Header/>
+//       <Main/>
+//       <Footer/>
+//     </div>
+//   </Router>
+// )
+// export default App
+
+
+//第六部分  如何实现404
+const Home =()=>(
+  <div>Home</div>
+)
+const About =()=>(
+  <div>About</div>
+)
+const NotFound =()=>(
+  <div>悲剧了，404！</div>
+)
+const App = ()=>(
   <Router>
-    <div>
-      <Header/>
-      <Main/>
-      <Footer/>
-    </div>
+    <Switch>
+      <Route exact path='/' component={Home}/>
+      <Route path='/about' component={About}/>
+      <Route component={NotFound}/>
+    </Switch>
   </Router>
 )
 export default App
