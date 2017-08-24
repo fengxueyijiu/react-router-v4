@@ -104,25 +104,58 @@ import { BrowserRouter as Router,Link,Route,Redirect,withRouter} from 'react-rou
 // export default App
 
 
-//第三部分
+// //第三部分
+//
+//
+// const Video = ({match}) =>(
+//
+//   <div>{match.params.id}</div>
+// )
+//
+// const App = () =>(
+//   <Router>
+//     <div>
+//       <h2>Accounts</h2>
+//       <ul>
+//         <li><Link to='/v/1-git'>1-git</Link></li>
+//         <li><Link to='/v/2-react'>2-react</Link></li>
+//       </ul>
+//       <Route path="/v/:id"  component={Video} />
+//     </div>
+//   </Router>
+// )
+//
+// export default App
 
 
-const Video = ({match}) =>(
-
-  <div>{match.params.id}</div>
+//第四部分 match.url
+const Home=()=>(
+  <div>Home</div>
 )
+const Item=({match})=>(
+  <h1>{match.params.item}</h1>
+)
+const About = ({match})=>(
+  <div>
+    <ul>
+      <li><Link to={`${match.url}/me`}>About Me</Link></li>
+      <li><Link to={`${match.url}/work`}>About Work</Link></li>
+    </ul>
+    <Route path={`${match.url}/:item`} component={Item} />
 
-const App = () =>(
+  </div>
+)
+const App=()=>(
   <Router>
     <div>
-      <h2>Accounts</h2>
       <ul>
-        <li><Link to='/v/1-git'>1-git</Link></li>
-        <li><Link to='/v/2-react'>2-react</Link></li>
+        <li><Link to='/'>home</Link></li>
+        <li><Link to='/about'>about</Link></li>
       </ul>
-      <Route path="/v/:id"  component={Video} />
+      <Route exact path='/' component={Home}/>
+      <Route  path='/about' component={About}/>
+
     </div>
   </Router>
 )
-
 export default App
