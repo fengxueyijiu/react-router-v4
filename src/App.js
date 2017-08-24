@@ -129,32 +129,48 @@ import { BrowserRouter as Router,Link,Route,Redirect,withRouter} from 'react-rou
 
 
 //第四部分 match.url
-const Home=()=>(
-  <div>Home</div>
-)
-const Item=({match})=>(
-  <h1>{match.params.item}</h1>
-)
-const About = ({match})=>(
-  <div>
-    <ul>
-      <li><Link to={`${match.url}/me`}>About Me</Link></li>
-      <li><Link to={`${match.url}/work`}>About Work</Link></li>
-    </ul>
-    <Route path={`${match.url}/:item`} component={Item} />
+// const Home=()=>(
+//   <div>Home</div>
+// )
+// const Item=({match})=>(
+//   <h1>{match.params.item}</h1>
+// )
+// const About = ({match})=>(
+//   <div>
+//     <ul>
+//       <li><Link to={`${match.url}/me`}>About Me</Link></li>
+//       <li><Link to={`${match.url}/work`}>About Work</Link></li>
+//     </ul>
+//     <Route path={`${match.url}/:item`} component={Item} />
+//
+//   </div>
+// )
+// const App=()=>(
+//   <Router>
+//     <div>
+//       <ul>
+//         <li><Link to='/'>home</Link></li>
+//         <li><Link to='/about'>about</Link></li>
+//       </ul>
+//       <Route exact path='/' component={Home}/>
+//       <Route  path='/about' component={About}/>
+//
+//     </div>
+//   </Router>
+// )
+// export default App
 
-  </div>
-)
-const App=()=>(
+//第五部分  老版本切换到v4
+
+import Header from './Header'
+import Main from './Main'
+import Footer from './Footer'
+const App =()=>(
   <Router>
     <div>
-      <ul>
-        <li><Link to='/'>home</Link></li>
-        <li><Link to='/about'>about</Link></li>
-      </ul>
-      <Route exact path='/' component={Home}/>
-      <Route  path='/about' component={About}/>
-
+      <Header/>
+      <Main/>
+      <Footer/>
     </div>
   </Router>
 )
