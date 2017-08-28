@@ -200,6 +200,38 @@ import { BrowserRouter as Router,Link,Route,Redirect,withRouter, Switch} from 'r
 
 //第七部分 Switch如果有多个 Route 都可以配对上 url ，那么就只去触发第一个 Route
 
+// const Home =()=>(
+//   <div>Home</div>
+// )
+// const About =()=>(
+//   <div>About</div>
+// )
+// const User = ({match})=>(
+//   <div>User:{match.params.user}</div>
+// )
+// const App = ()=>(
+//   <Router>
+//     <div>
+//       <ul>
+//         <li><Link to='/'>Home</Link></li>
+//         <li><Link to='/about'>About</Link></li>
+//         <li><Link to='/happypeter'>happypeter</Link></li>
+//
+//
+//       </ul>
+//       <Switch>
+//         <Route exact path='/' component={Home}/>
+//         <Route path='/about' component={About}/>
+//         <Route path='/:user' component={User}/>
+//       </Switch>
+//     </div>
+//   </Router>
+// )
+// export default App
+
+
+//第八部分  this.props.history.goBack()
+import Header1 from './Header1'
 const Home =()=>(
   <div>Home</div>
 )
@@ -209,22 +241,21 @@ const About =()=>(
 const User = ({match})=>(
   <div>User:{match.params.user}</div>
 )
-const App = ()=>(
-  <Router>
-    <div>
-      <ul>
-        <li><Link to='/'>Home</Link></li>
-        <li><Link to='/about'>About</Link></li>
-        <li><Link to='/happypeter'>happypeter</Link></li>
+class App extends React.Component {
+  render () {
+    return(
+      <Router>
+          <div>
+            <Header1/>
+            <Switch>
+              <Route exact path='/' component={Home}/>
+              <Route path='/about' component={About}/>
+              <Route path='/:user' component={User}/>
+            </Switch>
+          </div>
+        </Router>
+    )
+  }
+}
 
-
-      </ul>
-      <Switch>
-        <Route exact path='/' component={Home}/>
-        <Route path='/about' component={About}/>
-        <Route path='/:user' component={User}/>
-      </Switch>
-    </div>
-  </Router>
-)
-export default App
+export default App;
