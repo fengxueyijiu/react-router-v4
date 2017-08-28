@@ -178,22 +178,51 @@ import { BrowserRouter as Router,Link,Route,Redirect,withRouter, Switch} from 'r
 
 
 //第六部分  如何实现404
+// const Home =()=>(
+//   <div>Home</div>
+// )
+// const About =()=>(
+//   <div>About</div>
+// )
+// const NotFound =()=>(
+//   <div>悲剧了，404！</div>
+// )
+// const App = ()=>(
+//   <Router>
+//     <Switch>
+//       <Route exact path='/' component={Home}/>
+//       <Route path='/about' component={About}/>
+//       <Route component={NotFound}/>
+//     </Switch>
+//   </Router>
+// )
+// export default App
+
+//第七部分 Switch如果有多个 Route 都可以配对上 url ，那么就只去触发第一个 Route
+
 const Home =()=>(
   <div>Home</div>
 )
 const About =()=>(
   <div>About</div>
 )
-const NotFound =()=>(
-  <div>悲剧了，404！</div>
+const User = ({match})=>(
+  <div>User:{match.params.user}</div>
 )
 const App = ()=>(
   <Router>
-    <Switch>
-      <Route exact path='/' component={Home}/>
-      <Route path='/about' component={About}/>
-      <Route component={NotFound}/>
-    </Switch>
+    <div>
+      <ul>
+        <li><Link to='/'>Home</Link></li>
+        <li><Link to='/about'>About</Link></li>
+        <li><Link to='/happypeter'>happypeter</Link></li>
+      </ul>
+      <Switch>
+        <Route exact path='/' component={Home}/>
+        <Route path='/about' component={About}/>
+        <Route path='/:user' component={User}/>
+      </Switch>    
+    </div>
   </Router>
 )
 export default App
