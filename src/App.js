@@ -216,12 +216,14 @@ const App = ()=>(
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/about'>About</Link></li>
         <li><Link to='/happypeter'>happypeter</Link></li>
+
+
       </ul>
       <Switch>
         <Route exact path='/' component={Home}/>
         <Route path='/about' component={About}/>
         <Route path='/:user' component={User}/>
-      </Switch>    
+      </Switch>
     </div>
   </Router>
 )
